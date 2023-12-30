@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { map } from 'rxjs';
 export interface LoginForm{
   email:string;
@@ -14,12 +15,14 @@ export interface User {
   passwordonfirm?:string;
   role?:string;
 }
+export const JWT_NAME = 'blog-token';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private jwtHelper: JwtHelperService) { }
 
   login(loginForm:LoginForm){
     return this.http.post<any>('http://localhost:3000/api/user/login',
@@ -36,5 +39,9 @@ export class AuthenticationService {
     return this.http.post<any>('http://localhost:3000/api/user', user).pipe(
       map(user=>user)
     );
+  }
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem(JWT_NAME);
+    return !this.jwtHelper.isTokenExpired(token);
   }
 }

@@ -3,6 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UsersComponent } from './components/users/users.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UpdateUserProfileComponent } from './components/update-user-profile/update-user-profile.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -18,9 +21,29 @@ const routes: Routes = [
     component:RegisterComponent
   },
   {
+    path: 'users',
+    children: [
+      {
+        path: '',
+        component: UsersComponent
+      },
+      {
+        path: ':id',
+        component: UserProfileComponent
+      },
+    ]
+  },
+  {
     path:'users',
     component:UsersComponent
-  }
+  },
+  {
+    path: 'update-profile',
+    component: UpdateUserProfileComponent,
+    canActivate: [AuthGuard]
+  
+  },
+
 ];
 
 @NgModule({
