@@ -14,6 +14,7 @@ export interface User {
   password?: string;
   passwordonfirm?:string;
   role?:string;
+  profileImage?:string;
 }
 export const JWT_NAME = 'blog-token';
 
@@ -41,7 +42,7 @@ export class AuthenticationService {
     );
   }
   isAuthenticated(): boolean {
-    const token = localStorage.getItem(JWT_NAME);
+    const token = window.localStorage.getItem(JWT_NAME);
     return !this.jwtHelper.isTokenExpired(token);
   }
 }

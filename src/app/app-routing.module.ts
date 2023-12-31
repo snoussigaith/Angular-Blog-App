@@ -33,10 +33,7 @@ const routes: Routes = [
       },
     ]
   },
-  {
-    path:'users',
-    component:UsersComponent
-  },
+
   {
     path: 'update-profile',
     component: UpdateUserProfileComponent,

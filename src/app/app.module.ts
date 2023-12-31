@@ -21,6 +21,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { UpdateUserProfileComponent } from './components/update-user-profile/update-user-profile.component';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import {MatCardModule} from '@angular/material/card';
+
 
 
 
@@ -44,7 +46,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     BrowserAnimationsModule ,MatToolbarModule,MatIconModule,
     HttpClientModule,MatFormFieldModule,FormsModule,ReactiveFormsModule,
     MatInputModule,MatButtonModule,MatSelectModule,MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,MatCardModule
   ],
   providers: [
     provideClientHydration(),JwtHelperService,
