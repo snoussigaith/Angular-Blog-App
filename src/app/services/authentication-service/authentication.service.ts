@@ -42,7 +42,7 @@ export class AuthenticationService {
     );
   }
   isAuthenticated(): boolean {
-    const token = window.localStorage.getItem(JWT_NAME);
+    const token = localStorage.getItem(JWT_NAME);
     return !this.jwtHelper.isTokenExpired(token);
   }
 }
